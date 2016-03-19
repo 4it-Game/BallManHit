@@ -45,7 +45,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\GameMannager.cs" />
      <Compile Include="Assets\Script\PlayerController.cs" />
+     <Compile Include="Assets\Script\PlayerMannager.cs" />
      <Compile Include="Assets\Script\PlayerMotor.cs" />
      <Compile Include="Assets\Script\PlayerSetup.cs" />
      <Compile Include="Assets\Script\PlayerShoot.cs" />
