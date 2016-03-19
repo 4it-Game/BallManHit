@@ -3,6 +3,8 @@ using UnityEngine.Networking;
 
 public class PlayerShoot : NetworkBehaviour {
 
+	private const string PLAYER_TAG = "Player";
+
 	public PlayerWeponScript wepon;
 
 	[SerializeField]
@@ -24,10 +26,18 @@ public class PlayerShoot : NetworkBehaviour {
 		}
 	}
 
+	[Client]
 	void Shoot(){
 		RaycastHit hit;
 		if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, wepon.range ,mask)) {
-			Debug.Log("We Hit" + hit.collider.name);
+			if (hit.collider.tag == PLAYER_TAG) {
+				CmdPlayerShot (hit.collider.name);
+			}
 		}
+	}
+
+	[Command]
+	void CmdPlayerShot(string _ID){
+		Debug.Log (_ID + " has been shot");
 	}
 }
