@@ -32,7 +32,7 @@ public class PlayerMannager : NetworkBehaviour {
 
 		SetDefault ();
 	}
-
+	/*
 	void Update(){
 		if (!isLocalPlayer) {
 			return;
@@ -42,6 +42,7 @@ public class PlayerMannager : NetworkBehaviour {
 			RpcTakeDamage (99999);
 		}
 	}
+	*/
 
 	[ClientRpc]
 	public void RpcTakeDamage(int _amount){
@@ -78,13 +79,15 @@ public class PlayerMannager : NetworkBehaviour {
 	}
 
 	private IEnumerator Respawn(){
-		yield return new WaitForSeconds (3f);
+		yield return new WaitForSeconds (GameMannager.instance.matchSettings.respwanTime);
 
 		SetDefault ();
 
 		Transform _spwanPoint = NetworkManager.singleton.GetStartPosition ();
 		transform.position = _spwanPoint.position;
 		transform.rotation = _spwanPoint.rotation;
+
+		Debug.Log (transform.name + " Respawnd");
 	}
 
 	public void SetDefault()
